@@ -1,5 +1,8 @@
 Revision history for Lufi
 
+0.03.2 2018-??-??
+	- Allow to zip the files before upload
+
 0.03.1 2018-10-29
 	- Fix default CSP Header
 
