@@ -24,7 +24,7 @@ variables:
   artifacts:
     paths:
       - local/
-    expire_in: 1 week
+    expire_in: 3 days
   dependencies:
     - carton
 .sqlite_template: &sqlite_definition
@@ -36,6 +36,8 @@ variables:
     - name: rroemhild/test-openldap
       alias: rroemhild-test-openldap
   coverage: '/Total.* (\d+\.\d+)$/'
+  artifacts:
+    expire_in: 3 days
 .pg_template: &pg_definition
   stage: tests
   retry: 2
@@ -47,6 +49,8 @@ variables:
     - name: rroemhild/test-openldap
       alias: rroemhild-test-openldap
   coverage: '/Total .*(\d+\.\d+)$/'
+  artifacts:
+    expire_in: 3 days
 .mysql_template: &mysql_definition
   stage: tests
   retry: 2
@@ -58,6 +62,8 @@ variables:
     - name: rroemhild/test-openldap
       alias: rroemhild-test-openldap
   coverage: '/Total .*(\d+\.\d+)$/'
+  artifacts:
+    expire_in: 3 days
 
 ### Podcheck
 ##
@@ -66,6 +72,8 @@ podcheck:
   stage: podcheck
   script:
     - make podcheck
+  artifacts:
+    expire_in: 3 days
 
 ### Install common dependencies
 ##
@@ -75,7 +83,7 @@ carton:
   artifacts:
     paths:
       - local/
-    expire_in: 1 week
+    expire_in: 3 days
   dependencies: []
   script:
     - carton install --deployment --without=sqlite --without=postgresql --without=mysql
