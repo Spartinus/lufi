@@ -123,7 +123,10 @@ carton_postgresql:
 carton_mysql:
   <<: *carton_bdd_definition
   script:
+    - which mariadb_config && cd $(dirname $(which mariadb_config)) && ln -s mariadb_config mysql_config
+    - cd $CI_PROJECT_DIR
     - carton install --deployment --without=sqlite --without=postgresql
+    - cpanm -L local DBD::mysql
 
 ### SQLite tests
 ##
